@@ -4,7 +4,7 @@ Version: 1.0.0
 Author:  Jackkillian a.k.a. Jack Freund
 License: MIT License
 Website: https://github.com/Jackkillian/JK-Texty
-O.S.:    Source Code (Any O.S.)
+O.S.:    UNIX-path operating systems
 """
 
 """
@@ -29,7 +29,7 @@ import socket
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-__texty_version__ = '1.0.1'
+__texty_version__ = '1.0.2'
 
 class About_Texty():
 
@@ -198,12 +198,21 @@ class Setup_Texty():
                     self.quit()
                     Texty()
                 except:
-                    mbox.showerror('Error', 'There was an error sending the message. Please make sure you have an internet connection.', parent=self.root)
+                    try:
+                        mbox.showerror('Error', 'There was an error sending the message. Please make sure you have an internet connection.', parent=self.root)
+                    except:
+                        pass
             except smtp.SMTPAuthenticationError:
-                mbox.showerror('Incorrect creditentails', 'Your email address or password was incorrect.', parent=self.root)
-                self.setup()
+                try:
+                    mbox.showerror('Incorrect creditentails', 'Your email address or password was incorrect.', parent=self.root)
+                    self.setup()
+                except:
+                    pass
         except socket.gaierror:
-            mbox.showerror('Unknown Email Hoster', 'Sorry, but the email provider you selected is not known. Please make sure it is correct.', parent=self.root)
+            try:
+                mbox.showerror('Unknown Email Hoster', 'Sorry, but the email provider you selected is not known. Please make sure it is correct.', parent=self.root)
+            except:
+                pass
 
     def quit(self):
         self.root.quit()
@@ -534,7 +543,12 @@ class Texty():
             self.font_frame = ttk.Labelframe(self.root, text='Font Options')
             self.font_combo = ttk.Combobox(self.font_frame, values=font.families())
             self.font_button = ttk.Button(self.font_frame, text='Change Font', command=lambda: self._change_font())
-            self.font_size = ttk.Spinbox(self.font_frame, from_=1, to=100)
+            try:
+                self.font_size = ttk.Spinbox(self.font_frame, from_=1, to=100)
+            except:
+                # Older tkinter version
+                self.font_size = tk.Spinbox(self.font_frame, from_=1, to=100)
+                mbox.showwarning('Warning', 'You are using an older version of Tkinter. It is suggested that you update Tkinter, but if you don\'t feel like it, you can continue using Texty, just some of the features may not work right.', parent=self.root)
             self.font_opt = ttk.Combobox(self.font_frame, values=('normal', 'bold', 'italic', 'bold italic'))
         elif mode == 'toolbar':
             self.save_button = ttk.Button(self.root, text='Save', command=lambda: self._save())
@@ -551,7 +565,12 @@ class Texty():
             self.font_frame = ttk.Labelframe(self.root, text='Font Options')
             self.font_combo = ttk.Combobox(self.font_frame, values=font.families())
             self.font_button = ttk.Button(self.font_frame, text='Change Font', command=lambda: self._change_font())
-            self.font_size = ttk.Spinbox(self.font_frame, from_=1, to=100)
+            try:
+                self.font_size = ttk.Spinbox(self.font_frame, from_=1, to=100)
+            except:
+                # Older tkinter version
+                self.font_size = tk.Spinbox(self.font_frame, from_=1, to=100)
+                mbox.showwarning('Warning', 'You are using an older version of Tkinter. It is suggested that you update Tkinter, but if you don\'t feel like it, you can continue using Texty, just some of the features may not work right.', parent=self.root)
             self.font_opt = ttk.Combobox(self.font_frame, values=('normal', 'bold', 'italic', 'bold italic'))
         self._words=open( "Add_Ons/wordlist.txt").read().split("\n")
         self.main_text_input.bind("<space>", self.Spellcheck)
@@ -636,7 +655,7 @@ class Texty():
             CC.main()
         elif mode == 'HTML':
             HTML.main()
-        elif mode == 'JavaScipt':
+        elif mode == 'JavaScript':
             JavaScript.main()
         elif mode == 'JK Dashboard Extension':
             JK_Dashboard_Extension.main()
@@ -801,7 +820,12 @@ class Texty():
         self.font_frame = ttk.Labelframe(self.toolbar_root, text='Font Options')
         self.font_combo = ttk.Combobox(self.font_frame, values=font.families())
         self.font_button = ttk.Button(self.font_frame, text='Change Font', command=lambda: self._change_font())
-        self.font_size = ttk.Spinbox(self.font_frame, from_=1, to=100)
+        try:
+            self.font_size = ttk.Spinbox(self.font_frame, from_=1, to=100)
+        except:
+            # Older tkinter version
+            self.font_size = tk.Spinbox(self.font_frame, from_=1, to=100)
+            mbox.showwarning('Warning', 'You are using an older version of Tkinter. It is suggested that you update Tkinter, but if you don\'t feel like it, you can continue using Texty, just some of the features may not work right.', parent=self.root)
         self.font_opt = ttk.Combobox(self.font_frame, values=('normal', 'bold', 'italic', 'bold italic'))
 
     def regrid_gui(self):

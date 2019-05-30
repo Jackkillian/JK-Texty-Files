@@ -10,6 +10,7 @@ from tkinter import ttk
 from tkinter import scrolledtext
 from tkinter import font
 from tkinter import filedialog as fd
+from tkinter import messagebox as mbox
 import sys
 
 class JKTextyExtraText(scrolledtext.ScrolledText):
@@ -81,7 +82,12 @@ class Plain_Text():
         self.font_frame = ttk.Labelframe(self.root, text='Font Options')
         self.font_combo = ttk.Combobox(self.font_frame, values=font.families())
         self.font_button = ttk.Button(self.font_frame, text='Change Font', command=lambda: self._change_font())
-        self.font_size = ttk.Spinbox(self.font_frame, from_=1, to=100)
+        try:
+            self.font_size = ttk.Spinbox(self.font_frame, from_=1, to=100)
+        except:
+            # Older tkinter version
+            self.font_size = tk.Spinbox(self.font_frame, from_=1, to=100)
+            mbox.showwarning('Warning', 'You are using an older version of Tkinter. It is suggested that you update Tkinter, but if you don\'t feel like it, you can continue using Texty, just some of the features may not work right.', parent=self.root)
         self.font_opt = ttk.Combobox(self.font_frame, values=('normal', 'bold', 'italic', 'bold italic'))
         
     def grid_gui(self):
