@@ -816,7 +816,7 @@ class Texty():
         self.mode_creator_button.grid(row=9, column=0)
         self.check_for_updates_button.grid(row=10, column=0)
         self.settings_button.grid(row=11, column=0)
-        self.font_frame.grid(row=12, colum=0)
+        self.font_frame.grid(row=12, column=0)
     
     def reungrid_gui(self):
         self.save_button.grid_forget()
