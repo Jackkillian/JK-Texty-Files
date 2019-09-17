@@ -1,6 +1,3 @@
-# STOP! HALT! WAIT! WAIT A MINUTE!
-# This version of JK Texty is for UNIX operating systems, such as macOS and Linux-based operating systems. If you are using Windows, see [JK Texty for Windows](https://github.com/Jackkillian/JK-Texty-For-Windows).
-***
 # JK Texty Files
 The code for JK Texty  
 The JK Texty main repo is [here](https://github.com/Jackkillian/JK-Texty)
